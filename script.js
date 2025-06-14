@@ -130,9 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
         row.id = rowId;
         row.innerHTML = `
             <td><img src="${previewUrl}" alt="Preview" class="preview-img"></td>
-            <td>${file.name}</td>
+            <td class="filename-cell" title="${file.name}">${file.name}</td>
             <td class="status status-uploading">Đang tải...</td>
-            <td class="link-cell">...</td>
+            <td>...</td>
         `;
         resultBody.appendChild(row);
 
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 statusCell.textContent = 'Thành công';
                 statusCell.className = 'status status-success';
-                linkCell.innerHTML = `<a href="${data.url}" target="_blank">${data.url}</a><button class="copy-btn" data-url="${data.url}">Copy</button>`;
+                linkCell.innerHTML = `<button class="copy-btn" data-url="${data.url}">Copy Link Image</button>`;
             } else {
                 const errorText = await response.text();
                 statusCell.textContent = `Lỗi ${response.status}`;
@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     copyAllButton.addEventListener('click', () => {
         const links = Array.from(resultBody.querySelectorAll('.status-success'))
-            .map(statusCell => statusCell.nextElementSibling.querySelector('a')?.href)
-            .filter(href => href)
+            .map(statusCell => statusCell.nextElementSibling.querySelector('button')?.dataset.url)
+            .filter(url => url)
             .join('\n');
 
         if (links) {
