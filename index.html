@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool Upload Ảnh Tối Ưu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="toast-container"></div>
+
+    <div class="container">
+        <h1>🏞️ Tool Upload Ảnh Tối Ưu</h1>
+        <p>Tải ảnh lên và nhận liên kết tạm thời trong 48 giờ. Hỗ trợ kéo & thả.</p>
+
+        <fieldset class="config-section">
+            <legend>Cấu hình</legend>
+            <div class="api-key-controls">
+                <div class="api-input-group">
+                    <input type="password" id="apiKeyInput" placeholder="Nhập API Key của bạn">
+                    <span id="toggleApiVisibility" class="toggle-visibility"></span>
+                </div>
+                <button id="saveApiButton" title="Lưu API Key vào trình duyệt">Lưu</button>
+                <a href="https://api.market/store/magicapi/image-upload" target="_blank" rel="noopener noreferrer" class="api-link-button" title="Mở trang để lấy API Key mới">
+                    Lấy Key
+                </a>
+            </div>
+        </fieldset>
+        
+        <fieldset class="upload-section">
+            <legend>Tải lên</legend>
+            <div id="dropZone" class="drop-zone">
+                <input type="file" id="imageInput" multiple accept="image/*" class="file-input">
+                <p>Kéo & thả ảnh vào đây, hoặc <label for="imageInput" class="browse-link">duyệt tệp</label></p>
+                <span id="file-chosen">Chưa có ảnh nào được chọn</span>
+            </div>
+            <button type="submit" id="uploadButton" disabled>Tải lên</button>
+        </fieldset>
+
+        <div class="results" id="resultsContainer">
+            <div class="results-header">
+                <h2>Kết quả tải lên</h2>
+                <button id="copyAllButton" class="copy-all-btn" style="display: none;">Copy Tất Cả Link</button>
+            </div>
+            <div class="table-wrapper">
+                <table id="resultTable">
+                    <thead>
+                        <tr>
+                            <th>Ảnh xem trước</th>
+                            <th>Tên tệp</th>
+                            <th>Trạng thái</th>
+                            <th>Liên kết</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBody">
+                        <!-- Placeholder hoặc kết quả sẽ ở đây -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
